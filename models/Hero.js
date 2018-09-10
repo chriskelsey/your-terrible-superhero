@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Hero = sequelize.define("Hero", {
+    var Hero = sequelize.define("hero", {
         name: DataTypes.STRING, 
         trueIdentity: DataTypes.STRING,
         image: { type: DataTypes.STRING, validate: {isUrl: true}},
@@ -8,7 +8,9 @@ module.exports = function(sequelize, DataTypes) {
         eyes: DataTypes.STRING,
         hair: DataTypes.STRING,
         backStory: DataTypes.TEXT,
-        fightStats: [{durability: DataTypes.INTEGER, energy: DataTypes.INTEGER,  fightSkills: DataTypes.INTEGER, intelligence: DataTypes.INTEGER,       speed: DataTypes.INTEGER, strength: DataTypes.INTEGER}]
+        energy: DataTypes.INTEGER,
+        fightSkills: DataTypes.INTEGER,
+        intelligence: DataTypes.INTEGER
     });
     return Hero;
 };
