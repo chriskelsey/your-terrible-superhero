@@ -22,3 +22,32 @@ module.exports = function(app) {
     });
   });
 };
+/*
+//to get latest entry in table 2
+var latestUser;
+var latestUserScore;
+db.table2.findAll({
+  limit: 1,
+  order: [["createdAt", "DESC"]]
+}).then(function(user){
+  latestUser = user.id;
+  latestUserScore = (user.score1 + user.score2 + user.score3);
+  return latestUserScore;
+}).then(function(latestUserScore));
+
+function bestMatch(callback) {
+  //get all heros
+  db.hero.findAll().then(function(heroArr){
+  //setting default values     
+    var heroUserDifference = Infinity;
+    
+    for (var i = 0; i < heroArr.length; i++) {
+      let heroScoreVariance = Math.abs(heroArr[i].score - latestUserScore);
+    }
+    //compare heroScoreVariance with heroUserDifference and assign //lower to heroUserDifference; Set hero id to [i].
+    //
+    
+
+  })
+}
+*/

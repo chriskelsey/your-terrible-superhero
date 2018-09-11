@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
         backStory: DataTypes.TEXT,
         energy: DataTypes.INTEGER,
         fightSkills: DataTypes.INTEGER,
-        intelligence: DataTypes.INTEGER
+        intelligence: DataTypes.INTEGER,
+        heroScore: DataTypes.INTEGER
     });
     return Hero;
 };
