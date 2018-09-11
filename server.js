@@ -28,7 +28,9 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 const heroArray = require("./models/heroSeed");
+const responseArray = require("./models/responseSeed");
 var heroes = heroArray();
+const responses = responseArray();
 
 var syncOptions = { force: false };
 
@@ -49,6 +51,7 @@ db.sequelize.sync(syncOptions).then(function () {
   });
 }).then(function () {
   db.hero.bulkCreate(heroes);
+  db.response.bulkCreate(responses);
 }).then(() => {
   db.hero.findAll().then(function (heros) {
     console.log(heros.length);
