@@ -20,7 +20,7 @@ db.response.findAll({
 
 function bestMatch() {
   //get all heros
-  db.hero.findAll().then(function(heroArr){
+  db.hero.findAll({}).then(function(heroArr){
   //setting default values     
     var heroUserDifference = Infinity;
     var heroIndex = 0; //default hero match is array position 0
