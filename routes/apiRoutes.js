@@ -15,7 +15,7 @@ db.response.findAll({
   console.log(latestUserScore);
 }).then(function(latestUserScore){
   return latestUserScore;
-  
+  bestMatch();
 });
 
 function bestMatch() {
@@ -33,11 +33,11 @@ function bestMatch() {
         heroIndex = i;
         };
     }
-    return heroMatch;
+    res.json(heroMatch);
     
   })
 }
-bestMatch();
+
 
   // Create a new example
   app.post("/api/examples", function(req, res) {
