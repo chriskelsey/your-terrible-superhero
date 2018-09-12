@@ -19,7 +19,7 @@ db.response.findAll({
 });
 
 function bestMatch() {
-  //get all heros
+  //get all heros from table
   db.hero.findAll({}).then(function(heroArr){
   //setting default values     
     var heroUserDifference = Infinity;
