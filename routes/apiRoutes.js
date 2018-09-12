@@ -19,8 +19,13 @@ db.response.findAll({
 });
 
 function bestMatch() {
+<<<<<<< HEAD
   //get all heros from table
   db.hero.findAll({}).then(function(heroArr){
+=======
+  //get all heros
+  db.hero.findAll().then(function(heroArr){
+>>>>>>> e20a8029c27357978469d08400dbb3cfc82b113f
   //setting default values     
     var heroUserDifference = Infinity;
     var heroIndex = 0; //default hero match is array position 0
