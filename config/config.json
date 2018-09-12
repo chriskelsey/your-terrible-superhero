@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Delt@123",
+    "password": "DamnSQL1!",
     "database": "myHero_db",
     "host": "localhost",
     "dialect": "mysql"
