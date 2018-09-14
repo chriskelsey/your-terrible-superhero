@@ -1,0 +1,3 @@
+var quizresponse = function(){};
+
+module.exports = quizresponse;
