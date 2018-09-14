@@ -1,10 +1,9 @@
 require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
-var exphbs = require("express-handlebars");
 var Sequelize = require("sequelize");
 //var sequelize = new Sequelize();
-var db = require("./models");
+//var db = require("./models");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -14,20 +13,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
-
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/smsRoutes");
 
-const heroArray = require("./models/heroSeed");
+/*const heroArray = require("./models/heroSeed");
 const responseArray = require("./models/responseSeed");
 var heroes = heroArray();
 const responses = responseArray();
@@ -38,24 +29,21 @@ var syncOptions = { force: false };
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
-}
+}*/
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function () {
+//db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
+    console.log("Listening on port "+ PORT);
   });
-}).then(function () {
+/*}).then(function () {
   db.hero.bulkCreate(heroes);
-  db.response.bulkCreate(responses);
-}).then(() => {
+  db.response.bulkCreate(responses);*/
+/*}).then(() => {
   db.hero.findAll().then(function (heros) {
     console.log(heros.length);
   })
 });
 
 module.exports = app;
+*/

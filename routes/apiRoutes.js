@@ -1,4 +1,6 @@
 var db = require("../models");
+var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+var MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 
 module.exports = function(app) {
@@ -11,8 +13,6 @@ db.response.findAll({
 }).then(function(user){
   latestUser = user.id;
   latestUserScore = (user.score1 + user.score2 + user.score3 + user.score4 + user.score5);
-  console.log(latestUser);
-  console.log(latestUserScore);
 }).then(function(latestUserScore){
   return latestUserScore;
   bestMatch();
@@ -38,21 +38,25 @@ function bestMatch() {
   })
 }
 
+  //When a phone number is picked up pass it on to Twilio
+  app.post("/api/phone", function(req, res) {
+    // Take the request...
+    var quiz = req.body;
+    var qOne = quiz.q1;
+    var phone = quiz.phone;
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+    //Send the first message
+    client.messages
+      .create({
+      body: qOne,
+      from: process.env.TWILIO_NUMBER,
+      to: phone
+    }).then(message => {
+        console.log(message.sid);
     });
   });
 };
+
 /*
 //to get latest entry in table 2
 var latestUser;
