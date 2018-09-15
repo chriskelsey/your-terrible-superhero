@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Super Hero Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+
+    <!--Charts Include -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script type="text/javascript" src="https://www.jsdelivr.com/package/npm/chart.js?path=dist"></script>
+    
+
+</head>
+<body>
+
+    <h1>Congratulations, we found your WORST Super Hero match...</h1>
+    <h2>**Big-Bertha**</h2>
+
+    <div class="container-fluid">
+        <div>
+            <img class="BGPic" src="https://static.comicvine.com/uploads/original/4/46984/5770489-big+bertha+6.3.png" class="img-fluid" alt="Responsive image">
+
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+
+
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Howard the duck", "Phat", "Big-Bertha", "Leather Boy", "Hellcow", "Toddler"],
+        datasets: [{
+            label: '# of Votes',
+            data: [10   , 5, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+    
+</body>
+</html>

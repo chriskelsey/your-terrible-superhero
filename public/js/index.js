@@ -14,5 +14,7 @@ $(".btn").on("click", function(e) {
   };
 
   // send an AJAX POST-request with jQuery
-  $.post("/api/phone", quizQuestions);
+  $.post("/api/phone", quizQuestions).then(function() {
+    alert("Calculating your Superhero now");
+  });
 });
