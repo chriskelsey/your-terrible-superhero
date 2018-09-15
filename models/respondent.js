@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
     q2: DataTypes.TINYINT,
     q3: DataTypes.TINYINT,
     q4: DataTypes.TINYINT,
-    q5: DataTypes.TINYINT
+    q5: DataTypes.TINYINT,
+    hero: DataTypes.STRING,
   });
 
   return Response;

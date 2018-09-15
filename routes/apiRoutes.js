@@ -51,11 +51,25 @@ function bestMatch() {
       body: qOne,
       from: process.env.TWILIO_NUMBER,
       to: phone
-    }).then(message => {
-        console.log(message.sid);
-    });
+    }).then(function(){insertOrUpdate(
+        {phone:phone, q1:null, q2:null,q3:null, q4:0,q5:0},
+        {phone:phone}
+      )}).done();
   });
 };
+
+//This function creates a new row or updates an existing one.
+function insertOrUpdate(values, condition){
+  return db.response.findOne({ 
+    where: condition 
+  }).then(function(obj){
+    if(obj) {
+      return obj.update(values);
+    }else {
+      return db.response.create(values);
+    }
+  });
+}
 
 /*
 //to get latest entry in table 2

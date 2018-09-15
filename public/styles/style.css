@@ -1,0 +1,43 @@
+body {
+    background-image: url("../images/superhero.jpg");
+    background-repeat: no-repeat;
+    
+    background-size: 100% 100vh;
+    background-position: center -25%;
+    background-color: #1E262F;
+}
+
+input {
+    font-family: monospace;
+  }
+  label {
+    display: block;
+  }
+  div {
+    margin: 0 0 1rem 0;
+  }
+
+.panel{
+    width: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;  
+}
+
+h1 {
+    text-align: center;
+    color: lightblue;
+}
+
+@media only screen and (max-width: 580px) {
+    body {
+        background-position: center -25%;
+        background-size: 1000px;
+        background-color: #1E262F;
+    }
+}
+
+.wrapper {
+    text-align: center;
+}
