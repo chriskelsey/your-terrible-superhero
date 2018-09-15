@@ -1,10 +1,14 @@
-body {
+body{
+    background-color: #1E262F;
+    padding: 0;
+    margin: 0;
+}
+
+body.home {
     background-image: url("../images/superhero.jpg");
     background-repeat: no-repeat;
-    
     background-size: 100% 100vh;
     background-position: center -25%;
-    background-color: #1E262F;
 }
 
 input {
@@ -30,14 +34,54 @@ h1 {
     color: lightblue;
 }
 
+.BGPic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    width: 400px
+
+}
+
+@media only screen and (min-width: 568px) {
+    .Mb_Head {
+        visibility: hidden;
+    }
+
+}
+
+
 @media only screen and (max-width: 580px) {
-    body {
+    body.home {
         background-position: center -25%;
         background-size: 1000px;
         background-color: #1E262F;
     }
+
+    h1{
+        visibility: hidden;;   
+    }
+
+    .Mb_Head {
+        visibility: visible;
+        text-align: center;
+        color: lightblue;
+        font-weight: bold;
+    }
+
+    .BGPic {
+        height: 100%;
+        width: 100%;
+    
+    }
+
+    .panel {
+        width:85%;
+    }
+
 }
 
 .wrapper {
     text-align: center;
 }
+

@@ -23,7 +23,7 @@ module.exports = function(app) {
                     respond(quiz.q3,res);
                 } else {
                     db.response.update({q3:input},{where: {phone:phone}});
-                    respond("Congrats you got Hellcow! Seriously, what's wrong with you?",res);
+                    respond("Congrats you got Big Bertha! Click the link to see more information about her https://afternoon-ravine-25202.herokuapp.com/results. ",res);
                 }
             }
         });
