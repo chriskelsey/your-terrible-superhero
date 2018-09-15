@@ -1,75 +1,39 @@
-const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var MessagingResponse = require('twilio').twiml.MessagingResponse;
-//var QuizResponse = require('../models/QuizResponse');
-var quiz = require('./apiRoutes');
+var db = require("../models");
+var quiz = {
+    q2: "On a scale of 7 to 14, can you turn invisible?",
+    q3: "On a scale of 1 to 10 are you afraid of the dark?"
+}
 
 // Handle SMS submissions
-module.exports = function(req, res) {
-    console.log('SMS Posted');
-//let questionOne = quiz[0].questions[Object.keys(quiz[0].questions)[0]];
-//let phone = quiz[0].phone;
+module.exports = function(app) {
 
-/*client.messages
-  .create({
-     body: questionOne,
-     from: process.env.TWILIO_NUMBER,
-     to: phone
-   }).then(message => {
-        console.log(message.sid);
-   });*/
-    /*var phone = req.body.From;
-    var input = req.body.Body;
+    app.post("/sms", function(req, res) {
+        var phone = req.body.From;
+        var input = req.body.Body;
+        db.response.findOne({where: {phone:phone}
+        }).then(function(response){
+            if(response.dataValues.q1 == null){
+                db.response.update({q1:input},{where: {phone:phone}});
+                respond(quiz.q2,res);
+            }else {
+                if(response.dataValues.q2 == null){
+                    db.response.update({q2:input},{where: {phone:phone}});
+                    respond(quiz.q3,res);
+                } else {
+                    db.response.update({q3:input},{where: {phone:phone}});
+                    respond("Congrats you got Hellcow! Seriously, what's wrong with you?",res);
+                }
+            }
+        });
+    });
 
     // respond with message TwiML content
-    function respond(message) {
+    function respond(message,res) {
         var twiml = new MessagingResponse();
         twiml.message(message);
         res.type('text/xml');
         res.send(twiml.toString());
     }
-
-    // Check if there are any responses for the current number in an incomplete state
-    QuizResponse.findOne({
-        phone: phone,
-        complete: false
-    }, function(err, doc) {
-        if (!doc) {
-            var newQuiz = new QuizResponse({
-                phone: phone
-            });
-            newQuiz.save(function(err, doc) {
-                // Skip the input and just ask the first question
-                handleNextQuestion(err, doc, 0);
-            });
-        } else {
-            // After the first message, start processing input
-            QuizResponse.advanceSurvey({
-                phone: phone,
-                input: input,
-                quiz: quiz
-            }, handleNextQuestion);
-        }
-    });
-
-    // Ask the next question based on the current index
-    function handleNextQuestion(err, surveyResponse, questionIndex) {
-        var question = quiz[questionIndex];
-        var responseMessage = '';
-
-        if (err || !surveyResponse) {
-            return respond("I'm sorry, I didn't get that"
-                + "Please retry your message.");
-        }
-
-        // If question is null, we're done!
-        if (!question) {
-            return respond('Thank you for taking this survey. Goodbye!');
-        }
-
-        // Add question text
-        responseMessage += question.text;
-
-        // reply with message
-        respond(responseMessage);
-    }*/
 };

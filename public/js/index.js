@@ -4,16 +4,14 @@ $(".btn").on("click", function(e) {
 
   //Convert the phone to E.164 format
   var reg =/(\(|\)|-|\s)+/g;
-  var phoneForm = '+1' + $("#phone").val().trim();
-  var phone = phoneForm.replace(reg, '');
+  var phoneForm = "+1" + $("#phone").val().trim();
+  var phone = phoneForm.replace(reg, "");
 
 //Build the Quiz Questions
   var quizQuestions = {
     phone: phone,
-    q1: 'Please tell us your age.',
-    q2: 'Have you ever jump-kicked a lemur?',
-    q3: 'Who is your favorite Teenage Mutant Ninja Turtle and why?'
-    };
+    q1: "On a scale of 1 to 5, how strong are you feeling?"
+  };
 
   // send an AJAX POST-request with jQuery
   $.post("/api/phone", quizQuestions);
