@@ -7,6 +7,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../views/index.html"));
   });
 
+    app.get("/results", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/results.html"));
+  });
+
   // Load example page and pass in an example by id
   /*app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
